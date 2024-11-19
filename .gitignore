@@ -1,0 +1,8 @@
+# output of training
+runs/
+# model checkpoints
+*.pth
+# vscode workspace settings
+.vscode/
+# python cache
+__pycache__/

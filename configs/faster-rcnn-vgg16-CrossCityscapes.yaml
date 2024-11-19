@@ -1,0 +1,23 @@
+_BASE_: "./Base-RCNN-C4.yaml"
+MODEL:
+  WEIGHTS: "./weights/vgg16_bn-6c64b313_converted.pth"
+  META_ARCHITECTURE: "DaGeneralizedRCNN"
+  BACKBONE:
+    NAME: "build_vgg_backbone"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+  PROPOSAL_GENERATOR:
+    NAME: "RPN"
+  RPN:
+    IN_FEATURES: ["vgg4"]
+  ROI_HEADS:
+    NAME: "DaStandardROIHeads"
+    NUM_CLASSES: 8
+    IN_FEATURES: ["vgg4"]
+  ROI_BOX_HEAD:
+    NAME: "FastRCNNConvFCHead"
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+TEST:
+  EVAL_PERIOD: 1000
